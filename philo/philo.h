@@ -6,7 +6,7 @@
 /*   By: aboumadi <aboumadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 22:46:17 by aboumadi          #+#    #+#             */
-/*   Updated: 2022/04/03 17:16:08 by aboumadi         ###   ########.fr       */
+/*   Updated: 2022/04/10 01:36:20 by aboumadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ typedef struct time
 
 typedef struct threads
 {
-	pthread_mutex_t mut;
-
+	pthread_mutex_t mut_fork;
+	pthread_t		ph;
 }	t_threads;
 
 int		ft_atoi(char *str2);
