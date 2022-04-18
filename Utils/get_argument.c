@@ -6,14 +6,15 @@
 /*   By: aboumadi <aboumadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 16:51:59 by aboumadi          #+#    #+#             */
-/*   Updated: 2022/04/03 17:22:59 by aboumadi         ###   ########.fr       */
+/*   Updated: 2022/04/17 00:48:13 by aboumadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
-void	get_time(int argc, t_time *time, char **av)
+t_data	*get_time(int argc, char **av)
 {	
 	int	i;
+	t_data	*time;
 
 	i = 1;
 	while (av[i])
@@ -21,19 +22,23 @@ void	get_time(int argc, t_time *time, char **av)
 		if (!check_num(av[i]) || ft_atoi(av[i]) <= 0)
 		{
 			printf("false parameter\n");
-			exit (0);
+			return (NULL);
+			//exit (0);
 			//return NULL;
 		}
 		i++;
 	}
+	time = (t_data *)malloc(sizeof (t_data));
 	if (argc == 6)
 		time->nb_time_to_eat = ft_atoi(av[5]);
 	else
-		time->nb_time_to_eat = 0;
+	time->nb_time_to_eat = 0;
+	time->counter = 0;
 	time->nb_philo = ft_atoi(av[1]);
 	time->time_to_die = ft_atoi(av[2]) * 1000;
 	time->time_to_eat = ft_atoi(av[3]) * 1000;
 	time->time_to_sleep = ft_atoi(av[4]) * 1000;
+	return (time);
 }
 
 int	check_num(char *str)

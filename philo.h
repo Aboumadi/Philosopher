@@ -6,7 +6,7 @@
 /*   By: aboumadi <aboumadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 22:46:17 by aboumadi          #+#    #+#             */
-/*   Updated: 2022/04/10 01:36:20 by aboumadi         ###   ########.fr       */
+/*   Updated: 2022/04/17 01:04:13 by aboumadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,31 @@
 # include <pthread.h>
 # include <unistd.h>
 # include <stdlib.h>
-//# include <stdarg.h>
-//# include <fcntl.h>
 # include <stdio.h>
 
-typedef struct time
+typedef struct data
 {
 	int	nb_philo;
 	int	time_to_die;
 	int	time_to_eat;
 	int	time_to_sleep;
 	int	nb_time_to_eat;
-}	t_time;
+	int	counter;
+}	t_data;
 
-typedef struct threads
+typedef struct th
 {
-	pthread_mutex_t mut_fork;
+	int	id;
+	pthread_mutex_t	mut_fork_left;
+	pthread_mutex_t	mut_fork_right;
 	pthread_t		ph;
-}	t_threads;
+}	t_th;
 
 int		ft_atoi(char *str2);
-void	get_time(int argc, t_time *time, char **av);
+t_data	*get_time(int argc, char **av);
 int		check_num(char *str);
 int		ft_isdigit(int n);
+int		ft_work1(t_data *time, t_th **ph);
+int		get_th(t_data *time, t_th **ph);
 
 #endif
