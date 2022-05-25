@@ -6,26 +6,22 @@
 /*   By: aboumadi <aboumadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 16:51:59 by aboumadi          #+#    #+#             */
-/*   Updated: 2022/04/17 00:48:13 by aboumadi         ###   ########.fr       */
+/*   Updated: 2022/05/23 22:45:25 by aboumadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
-t_data	*get_time(int argc, char **av)
+
+t_data	*get_args(int argc, char **av)
 {	
-	int	i;
+	int		i;
 	t_data	*time;
 
 	i = 1;
 	while (av[i])
 	{
 		if (!check_num(av[i]) || ft_atoi(av[i]) <= 0)
-		{
-			printf("false parameter\n");
 			return (NULL);
-			//exit (0);
-			//return NULL;
-		}
 		i++;
 	}
 	time = (t_data *)malloc(sizeof (t_data));
@@ -34,19 +30,21 @@ t_data	*get_time(int argc, char **av)
 	else
 	time->nb_time_to_eat = 0;
 	time->counter = 0;
+	time->die = 0;
+	time->n_of_eat = 0;
 	time->nb_philo = ft_atoi(av[1]);
-	time->time_to_die = ft_atoi(av[2]) * 1000;
-	time->time_to_eat = ft_atoi(av[3]) * 1000;
-	time->time_to_sleep = ft_atoi(av[4]) * 1000;
+	time->time_to_die = ft_atoi(av[2]);
+	time->time_to_eat = ft_atoi(av[3]);
+	time->time_to_sleep = ft_atoi(av[4]);
 	return (time);
 }
 
 int	check_num(char *str)
 {
 	int	i;
-	
+
 	i = 0;
-	if ((str[i] ==  '-' || str[i] == '+') && str[i])
+	if ((str[i] == '-' || str[i] == '+') && str[i])
 		i++;
 	while (str[i])
 	{

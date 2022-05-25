@@ -2,7 +2,7 @@ NAME = philo
 
 HEADER = philo.h
 
-SRC = philo.c Utils/ft_atoi.c Utils/get_argument.c utils1.c utils2.c utils3.c\
+SRC = philo.c Utils/ft_atoi.c Utils/get_argument.c Utils/utils1.c Utils/utils2.c Utils/utils3.c Utils/utils4.c\
 	
 OBJ = ${SRC:.c=.o}
 
