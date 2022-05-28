@@ -6,7 +6,7 @@
 /*   By: aboumadi <aboumadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 00:53:49 by aboumadi          #+#    #+#             */
-/*   Updated: 2022/05/23 22:58:51 by aboumadi         ###   ########.fr       */
+/*   Updated: 2022/05/27 19:26:28 by aboumadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ready_to_eat(t_data *data, t_th *philo)
 	(philo->nb_of_eat)++;
 	nw_time = current_time();
 	while (current_time() - nw_time < data->time_to_eat)
-		usleep(100);
+		usleep(50);
 }
 
 int	ready_to_taking_forks(t_data *data, t_th *philo)
@@ -63,7 +63,7 @@ void	*routine(void *philo)
 		ft_print(c_data, c_philo->id, "is sleeping");
 		new_time2 = current_time();
 		while (current_time() - new_time2 < c_data->time_to_sleep)
-			usleep(100);
+			usleep(50);
 		ft_print(c_data, c_philo->id, "is thinking");
 	}
 	return (NULL);

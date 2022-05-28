@@ -6,7 +6,7 @@
 /*   By: aboumadi <aboumadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 16:29:48 by aboumadi          #+#    #+#             */
-/*   Updated: 2022/05/23 22:57:17 by aboumadi         ###   ########.fr       */
+/*   Updated: 2022/05/26 02:36:32 by aboumadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_check_death(t_data *data, t_th *philo)
 		if (data->die)
 			break ;
 		if (data->nb_time_to_eat > 0)
-			how_mutch_eat(data, data->data_of_philo);
+			how_mutch_eat(data, philo);
 	}
 }
 
@@ -55,19 +55,16 @@ void	ending(t_data *philo)
 
 	i = 0;
 	while (i < philo->nb_philo)
-	{
-		pthread_join(philo->data_of_philo[i].ph, NULL);
-		i++;
-	}
+		pthread_join(philo->data_of_philo[i++].ph, NULL);
 	i = 0;
 	while (i < philo->nb_philo)
-	{
-		pthread_mutex_destroy(&(philo->fork[i]));
-		i++;
-	}
+		pthread_mutex_destroy(&(philo->fork[i++]));
 	pthread_mutex_destroy(&(philo->eat));
 	pthread_mutex_destroy(&(philo->print));
 	pthread_mutex_destroy(&(philo->death));
+	free(philo->fork);
+	free(philo->data_of_philo);
+	free(philo);
 }
 
 int	creat_thread(t_data *philo, t_th *ph)
@@ -87,7 +84,7 @@ int	creat_thread(t_data *philo, t_th *ph)
 		}
 		i++;
 	}
-	ft_check_death(philo, philo->data_of_philo);
+	ft_check_death(philo, ph);
 	ending(philo);
 	return (0);
 }
